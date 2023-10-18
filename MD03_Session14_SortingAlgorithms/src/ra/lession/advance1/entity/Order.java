@@ -142,7 +142,11 @@ public class Order {
 
         System.out.println("Chon ma san pham");
         String id = scanner().nextLine();
-
+        for (int i = 0; i < productList.size(); i++) {
+            if(productList.get(i).getProductId().equals(id)){
+                this.productId=id;
+            }
+        }
     }
 
     public void display() {

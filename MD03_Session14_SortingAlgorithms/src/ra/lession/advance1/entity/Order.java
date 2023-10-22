@@ -1,5 +1,6 @@
 package ra.lession.advance1.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -9,22 +10,26 @@ public class Order {
     private String orderId;
     private int quantity;
     private String productId;
-    private Date created;
+    private String created;
+
+    // Định dạng ngày tháng
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int userCreatedId;
-    private Date updated;
+    private String updated;
     private int userUpdatedId;
     private boolean orderType;
     private float price;
     private boolean orderStatus;
 
     public Order() {
+        this.created = dateFormat.format(new Date());
     }
 
-    public Order(String orderId, int quantity, String productId, Date created, int userCreatedId, Date updated, int userUpdatedId, boolean orderType, float price, boolean orderStatus) {
+    public Order(String orderId, int quantity, String productId, int userCreatedId, String updated, int userUpdatedId, boolean orderType, float price, boolean orderStatus) {
         this.orderId = orderId;
         this.quantity = quantity;
         this.productId = productId;
-        this.created = created;
+        this.created = dateFormat.format(new Date());
         this.userCreatedId = userCreatedId;
         this.updated = updated;
         this.userUpdatedId = userUpdatedId;
@@ -57,13 +62,6 @@ public class Order {
         this.productId = productId;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 
     public int getUserCreatedId() {
         return userCreatedId;
@@ -73,11 +71,11 @@ public class Order {
         this.userCreatedId = userCreatedId;
     }
 
-    public Date getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 
@@ -113,7 +111,7 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public void inputData(List<Product> productList) {
+    public void inputData(List<Product> productList, List<Employee> employeeList) {
         while (true) {
             System.out.println("Nhap ma phieu");
             this.orderId = scanner().nextLine();
@@ -140,16 +138,109 @@ public class Order {
 
         }
 
-        System.out.println("Chon ma san pham");
-        String id = scanner().nextLine();
-        for (int i = 0; i < productList.size(); i++) {
-            if(productList.get(i).getProductId().equals(id)){
-                this.productId=id;
+        while (true) {
+            System.out.println("Chon ma san pham");
+            String id = scanner().nextLine();
+            boolean check = false;
+            for (int i = 0; i < productList.size(); i++) {
+                if (productList.get(i).getProductId().equals(id)) {
+                    this.productId = id;
+                    check = true;
+                    break;
+                }
+            }
+            if (!check) {
+                System.out.println("Ma san pham khong ton tai, vui long chon lai");
+            } else {
+                break;
             }
         }
+        while (true) {
+            System.out.println("Danh sach tat ca nhan vien: ");
+            for (Employee e : employeeList) {
+                System.out.printf("Ma nhan vien: %d - Ten nhan vien: %s \n", e.getEmpId(), e.getEmpName());
+            }
+
+            System.out.println("Nhap ma nhan vien thuc hien");
+            int userId = Integer.parseInt(scanner().nextLine());
+            boolean check = false;
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (employeeList.get(i).getEmpId() == userId) {
+                    this.userCreatedId = userId;
+                    check = true;
+                }
+            }
+            if (!check) {
+                System.out.println("Ma nhan vien khong ton tai, vui long chon lai");
+            } else {
+                break;
+            }
+        }
+
+        System.out.println("Nhap ngay cap nhat phieu");
+        this.updated=dateFormat.format(new Date(scanner().nextLine()));
+
+        while (true) {
+            System.out.println("Danh sach tat ca nhan vien: ");
+            for (Employee e : employeeList) {
+                System.out.printf("Ma nhan vien: %d - Ten nhan vien: %s \n", e.getEmpId(), e.getEmpName());
+            }
+
+            System.out.println("Nhap ma nhan vien cap nhat");
+            int userUpdateId = Integer.parseInt(scanner().nextLine());
+            boolean check = false;
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (employeeList.get(i).getEmpId() == userUpdateId) {
+                    this.userUpdatedId = userUpdateId;
+                    check = true;
+                }
+            }
+            if (!check) {
+                System.out.println("Ma nhan vien khong ton tai, vui long chon lai");
+            } else {
+                break;
+            }
+        }
+        System.out.println("Nhap loai phieu: ((true-phiếu nhập, false-phiếu xuất)");
+        this.orderType= Boolean.parseBoolean(scanner().nextLine());
+
+        while(true){
+            System.out.println("Dien gia ");
+            this.price= Float.parseFloat(scanner().nextLine());
+
+            if(this.price<=0){
+                System.out.println("Gia phai lon hon 0");
+            }else{
+                break;
+            }
+        }
+
+        System.out.println("Nhap trang thai phieu: (true – hoạt động, false – bị hủy)");
+        this.orderStatus= Boolean.parseBoolean(scanner().nextLine());
+
+
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId='" + orderId + '\'' +
+                ", quantity=" + quantity +
+                ", productId='" + productId + '\'' +
+                ", created='" + created + '\'' +
+                ", dateFormat=" + dateFormat +
+                ", userCreatedId=" + userCreatedId +
+                ", updated='" + updated + '\'' +
+                ", userUpdatedId=" + userUpdatedId +
+                ", orderType=" + orderType +
+                ", price=" + price +
+                ", orderStatus=" + orderStatus +
+                '}';
     }
 
     public void display() {
-
+        System.out.printf("Ma phieu: %s - So luong: %d - Ma SP: %d - Ngay tao phieu: %s - NV tao phieu: %d \n " +
+                "Ngay cap nhat phieu: %s - NV cap nhat: %d - Loai phieu: %s - Gia: %f - Trang thai phieu: %s \n",
+                this.orderId,this.quantity,this.created,this.userCreatedId,this.updated,this.userUpdatedId,(this.orderType?"Phieu nhap":"Phieu xuat"), this.price, (this.orderStatus?"Hoat dong":"Bi huy"));
     }
 }

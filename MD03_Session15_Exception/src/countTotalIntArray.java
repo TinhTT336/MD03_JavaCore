@@ -5,21 +5,20 @@ public class countTotalIntArray {
         //
         //Hướng dẫn: duyệt mảng cộng các phần tử bình thường,
         // nhưng biểu thức tính cộng để trong khối try-catch.
-        int[] arr = {1,5,5,6,10,8,11,23};
-        System.out.println("Tong mang so nguyen la: "+countTotalIntArray(arr));
+        Object[] arr = {1, 5, 5, 6, "abc", 8, 11, 23};
+        System.out.println("Tong mang so nguyen la: " + countSumIntArray(arr));
     }
 
-    public static int countTotalIntArray(int[] arr) {
-
+    public static int countSumIntArray(Object[] arr) {
         int total = 0;
-        for (Integer i : arr) {
+        for (int i = 0; i < arr.length; i++) {
             try {
-                total += i;
-
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException();
+                total += (int) (arr[i]);
+                System.out.println(arr[i] + " la so nguyen");
+            } catch (ClassCastException e) {
+                System.out.println("Mang co phan tu khong phai so nguyen");
             }
         }
-      return total;
+        return total;
     }
 }

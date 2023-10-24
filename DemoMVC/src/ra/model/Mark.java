@@ -54,8 +54,8 @@ public class Mark {
     public String toString() {
         return "Mark{" +
                 "markId=" + markId +
-                ", student=" + student.getStudentName() +
-                ", subject=" + subject.getSubjectName() +
+                ", student=" + student +
+                ", subject=" + subject +
                 ", point=" + point +
                 '}';
     }

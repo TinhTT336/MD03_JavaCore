@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClassroomManagement {
     IClassroomService classroomService = new ClassroomServiceIMPL();
-    IStudentService studentService=new StudentServiceIMPL();
+    IStudentService studentService = new StudentServiceIMPL();
 
     public void menu() {
         int choice;
@@ -57,25 +57,19 @@ public class ClassroomManagement {
     private void deleteClassroom() {
         System.out.println("Nhap ma lop hoc muon xoa: ");
         int deleteId = Config.validateInt();
-        List<Student>studentList=studentService.findAll();
+        List<Student> studentList = studentService.findAll();
 
-        for(Student student:studentList){
-            if(student.getClassroom().getClassroomId()==deleteId){
+        for (Student student : studentList) {
+            if (student.getClassroom().getClassroomId() == deleteId) {
                 System.out.println("Lop hoc da ton tai hoc sinh, khong duoc xoa");
                 return;
             }
         }
-        boolean check=true;
-        for(Classroom classroom: classroomService.findAll()){
-            if(classroom.getClassroomId()==deleteId){
-                classroomService.deleteByIt(deleteId);
-                System.out.println("Xoa lop thanh cong");
-                check=false;
-                break;
-            }
-        }
-        if(check){
-            System.out.println("Khong tim thay lop hoc theo ma vua nhap");
+        Classroom classroomDelete = classroomService.findById(deleteId);
+        if (classroomDelete == null) {
+            System.out.println("Khong tim thay lop hoc voi ma vua nhap");
+        } else {
+            classroomService.deleteByIt(deleteId);
         }
     }
 

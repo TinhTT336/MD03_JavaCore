@@ -1,6 +1,6 @@
 package ra.model;
 
-public class Classroom extends Entity{
+public class Classroom {
     private int classroomId;
     private static int id=1;
     private String classroomName;

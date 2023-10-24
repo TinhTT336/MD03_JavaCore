@@ -28,7 +28,8 @@ public class ClassroomServiceIMPL implements IClassroomService {
 
     @Override
     public void deleteByIt(int id) {
-        classroomList.remove(id);
+        Classroom classroomDelete=findById(id);
+        classroomList.remove(classroomDelete);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package ra.model;
 
-public class Subject {
+import java.io.Serializable;
+
+public class Subject implements Serializable {
     private int subjectId;
     private static int count=1;
     private String subjectName;

@@ -18,4 +18,5 @@ public class Entity<ID> {
         this.id = id;
     }
 
+
 }

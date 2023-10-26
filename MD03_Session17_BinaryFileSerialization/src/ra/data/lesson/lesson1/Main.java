@@ -9,7 +9,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     static List<Product> productList = new ArrayList<>();
-    private static List<Product> products;
+    //    private static List<Product> products;
     private static File file;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, ClassCastException {
@@ -45,9 +45,10 @@ public class Main {
     }
 
     private static void searchProductByName() {
+        readFile();
         System.out.println("Nhap ten san pham muon tim kiem: ");
         String productName = scanner.nextLine();
-        for (Product product : products) {
+        for (Product product : productList) {
             if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
                 System.out.println(product);
             }
@@ -56,18 +57,12 @@ public class Main {
     }
 
     private static void showProduct() {
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            List<Product> products = (List<Product>) ois.readObject();
-            ois.close();
-            System.out.println("Danh sach san pham: ");
-            for (Product product : products) {
-                System.out.println(product);
-            }
-        } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            System.out.println();
+        readFile();
+        System.out.println("Danh sach san pham: ");
+        for (Product product : productList) {
+            System.out.println(product);
         }
+
     }
 
     private static void addProduct() {
@@ -101,6 +96,20 @@ public class Main {
 
 
         }
+    }
+
+    public static List<Product> readFile() {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            productList = (List<Product>) ois.readObject();
+            if (ois != null) {
+                ois.close();
+            }
+        } catch (IOException | ClassNotFoundException | ClassCastException e) {
+            System.out.println();
+        }
+        return productList;
     }
 
 

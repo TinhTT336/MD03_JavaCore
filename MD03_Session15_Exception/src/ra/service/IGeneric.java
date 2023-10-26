@@ -8,5 +8,6 @@ public interface IGeneric <T>{
     void update(T t);
     void deleteByIt(int id);
     T findById(int id);
+    void updataData();
 
 }

@@ -1,29 +1,19 @@
-package ra.model;
-
-import ra.service.impl.ClassroomServiceIMPL;
+package demowritereadfile;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
-import static ra.service.impl.ClassroomServiceIMPL.classroomList;
-
-public class Classroom extends Entity implements Serializable {
+public class Classroom implements Serializable {
     private int classroomId;
+    private static int id = 1;
     private String classroomName;
     private boolean status;
 
     public Classroom() {
-        this.classroomId = getIdMax(classroomList) + 1;
-//        this.classroomId = (classroomList.get(classroomList.size() - 1).getClassroomId()) + 1;
-        this.classroomId = (classroomList.isEmpty()) ? 1 : this.getClassroomId();
+        this.classroomId = Classroom.id++;
     }
 
     public Classroom(String classroomName, boolean status) {
-        this.classroomId = getIdMax(classroomList) + 1;
-//        this.classroomId = (classroomList.get(classroomList.size() - 1).getClassroomId()) + 1;
-        this.classroomId = (classroomList.isEmpty()) ? 1 : this.getClassroomId();
+        this.classroomId = Classroom.id++;
         this.classroomName = classroomName;
         this.status = status;
     }
@@ -60,15 +50,5 @@ public class Classroom extends Entity implements Serializable {
                 ", classroomName='" + classroomName + '\'' +
                 ", status=" + status +
                 '}';
-    }
-
-    public int getIdMax(List<Classroom> classroomList) {
-        int maxId = 0;
-        for (Classroom classroom : classroomList) {
-            if (maxId <  classroom.getClassroomId()) {
-                maxId = classroom.getClassroomId();
-            }
-        }
-        return maxId;
     }
 }

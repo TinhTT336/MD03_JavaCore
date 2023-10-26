@@ -1,6 +1,8 @@
 package ra.model;
 
-public class Mark {
+import java.io.Serializable;
+
+public class Mark implements Serializable {
     private int markId;
     private static int count=10;
     private Student student;

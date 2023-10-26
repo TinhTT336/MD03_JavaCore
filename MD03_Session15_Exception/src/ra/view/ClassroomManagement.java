@@ -125,6 +125,10 @@ public class ClassroomManagement {
     private void showClassroomList() {
         System.out.println("Danh sach cac lop hoc: ");
         List<Classroom> classroomList = classroomService.findAll();
+        if (classroomList.isEmpty()){
+            System.out.println("Danh sach trong");
+            return;
+        }
         for (Classroom classroom : classroomList) {
             System.out.println(classroom.toString());
         }

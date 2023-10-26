@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SubjectServiceIMPL implements ISubjectService {
     static List<Subject> subjectList;
-    static WriteReadFile<Subject> subjectWriteReadFile = new WriteReadFile<>();
+    static WriteReadFile<List<Subject>> subjectWriteReadFile = new WriteReadFile<>();
 
     static {
         subjectList = subjectWriteReadFile.readFile(WriteReadFile.PATH_SUBJECT);

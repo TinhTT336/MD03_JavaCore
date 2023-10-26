@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ClassroomServiceIMPL implements IClassroomService {
     public static List<Classroom> classroomList;
-    static WriteReadFile<Classroom> classroomWriteReadFile = new WriteReadFile<>();
+    static WriteReadFile<List<Classroom>> classroomWriteReadFile = new WriteReadFile<>();
 
     static {
         classroomList = classroomWriteReadFile.readFile(WriteReadFile.PATH_CLASSROOM);

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StudentServiceIMPL implements IStudentService {
     static List<Student> studentList;
-    static WriteReadFile<Student> studentWriteReadFile = new WriteReadFile<>();
+    static WriteReadFile<List<Student>> studentWriteReadFile = new WriteReadFile<>();
 
     static {
         studentList = studentWriteReadFile.readFile(WriteReadFile.PATH_STUDENT);

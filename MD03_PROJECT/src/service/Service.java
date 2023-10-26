@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Service<T extends Entity, ID extends Number> {
-    private String fileName;
+    private final String fileName;
 
     public Service(String fileName) {
         this.fileName = fileName;

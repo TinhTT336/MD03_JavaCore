@@ -1,9 +1,10 @@
-package model;
+package model.user;
 
 import constant.Role;
 import constant.Status;
+import model.Entity;
 
-public class User extends Entity <Integer>{
+public class User extends Entity<Integer> {
     private static final long serialVersionUID = 1L;
 
     private String username;

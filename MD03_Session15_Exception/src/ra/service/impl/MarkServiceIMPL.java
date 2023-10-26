@@ -10,7 +10,7 @@ import java.util.List;
 public class MarkServiceIMPL implements IMarkService {
     static List<Mark> markList;
 
-    static WriteReadFile<Mark> markWriteReadFile = new WriteReadFile<>();
+    static WriteReadFile<List<Mark>> markWriteReadFile = new WriteReadFile<>();
 
     static {
         markList = markWriteReadFile.readFile(WriteReadFile.PATH_MARK);

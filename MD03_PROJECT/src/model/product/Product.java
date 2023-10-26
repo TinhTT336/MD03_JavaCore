@@ -1,9 +1,9 @@
-package model;
+package model.product;
 
-import java.io.Serializable;
-import java.util.List;
+import model.Entity;
+import model.category.Category;
 
-public class Product extends Entity <Integer> {
+public class Product extends Entity<Integer> {
     private String productName;
     private String manufacturer;
     private int quantity;

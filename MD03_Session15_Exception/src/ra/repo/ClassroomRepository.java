@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassroomRepository implements IFileReposityory<Classroom, Integer> {
-    private File file;
+    private final File file;
 
     public ClassroomRepository() {
         File dataDir = new File("data");

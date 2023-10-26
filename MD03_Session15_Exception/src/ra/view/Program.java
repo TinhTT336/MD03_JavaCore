@@ -2,12 +2,41 @@ package ra.view;
 
 import ra.config.Config;
 
-import static ra.config.Config.scanner;
-
-public class Main {
+public class Program {
     public static void main(String[] args) {
-        Main main = new Main();
-        main.menu();
+        Program program=new Program();
+        program.start();
+
+    }
+
+    private void start() {
+        System.out.println("Chuong trinh quan ly sinh vien");
+        System.out.println("Hay dang nhap hoac dang ky de su dung he thong");
+        int choice;
+        do {
+            System.out.println("**********************************************");
+            System.out.println("1. Dang nhap");
+            System.out.println("2. Dang ky");
+            System.out.println("0. Thoát");
+            System.out.print("Mời lựa chọn (1/2/0): ");
+            choice = Config.validateInt();
+            switch (choice) {
+                case 1:
+                    LoginView loginView=new LoginView();
+
+                    break;
+                case 2:
+                    new UserView().registerUser();
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    break;
+            }
+        } while (true);
+
     }
 
     public void menu() {
@@ -18,7 +47,8 @@ public class Main {
             System.out.println("2. Quan ly sinh vien");
             System.out.println("3. Quan ly mon hoc");
             System.out.println("4. Quan ly diem");
-            System.out.println("5. Thoát");
+            System.out.println("5. Quan ly ho so ca nhan (user)");
+            System.out.println("6. Thoát");
             System.out.print("Mời lựa chọn (1/2/3/4/5): ");
             choice = Config.validateInt();
             switch (choice) {
@@ -35,6 +65,8 @@ public class Main {
                     new MarkManagement().menuMark();
                     break;
                 case 5:
+                    break;
+                case 6:
                     System.exit(0);
                     break;
                 default:

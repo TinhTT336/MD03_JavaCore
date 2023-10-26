@@ -36,7 +36,7 @@ public class UserServiceIMPL implements IUserService {
 
     }
     public User login(String username, String password){
-        List<User>users=null;
-        return null;
+        List<User>users;
+        return false;
     }
 }
